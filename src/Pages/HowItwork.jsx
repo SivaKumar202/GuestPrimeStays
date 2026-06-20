@@ -1,142 +1,87 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
     number: "01",
-    title: "Search & Discover",
+    title: "We list your property",
     description:
-      "Browse handpicked vacation rentals, luxury cabins and unique stays across Georgia.",
+      "Professional photos, a search optimized title, and a description written to convert lookers into bookers.",
     image:
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80",
   },
   {
     number: "02",
-    title: "Book Your Stay",
+    title: "We manage every booking",
     description:
-      "Choose your dates, secure your booking and receive instant confirmation.",
+      "Guest screening, 24/7 messaging, and dynamic pricing that adjusts daily to demand all handled for you.",
     image:
       "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80",
   },
   {
     number: "03",
-    title: "Enjoy The Experience",
+    title: "You collect the revenue",
     description:
-      "Arrive, relax and enjoy unforgettable moments with local hospitality.",
+      "Cleaning is coordinated automatically after checkout, and you get a clear monthly report of what you earned.",
     image:
       "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1200&q=80",
   },
 ];
 
 export default function HowItWorks() {
-  const sectionRef = useRef();
-
-  useEffect(() => {
-    const cards = gsap.utils.toArray(".step-card");
-
-    cards.forEach((card) => {
-      gsap.fromTo(
-        card,
-        {
-          opacity: 0,
-          y: 100,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          ease: "power4.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 80%",
-          },
-        }
-      );
-    });
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative bg-[#08111F] py-32 overflow-hidden"
-    >
-      {/* Background Glow */}
-      <div className="absolute top-0 left-1/2 h-150 w-150 -translate-x-1/2 rounded-full bg-yellow-500/10 blur-[150px]" />
-
+    <section id="how-it-works" className="bg-paper py-28">
       <div className="mx-auto max-w-7xl px-6">
-        {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-24 text-center"
+          transition={{ duration: 0.6 }}
+          className="mb-20 max-w-2xl"
         >
-          <span className="rounded-full border border-yellow-500/20 bg-yellow-500/10 px-4 py-2 text-sm text-yellow-400">
-            HOW IT WORKS
+          <span className="text-sm font-semibold uppercase tracking-wide text-coral">
+            How it works
           </span>
-
-          <h2 className="mt-6 text-5xl font-bold text-white md:text-7xl">
-            Your Perfect Stay
-            <br />
-            In Three Simple Steps
+          <h2 className="mt-4 text-4xl font-extrabold tracking-tight text-ink md:text-5xl">
+            Three steps. Zero hassle.
           </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/70">
-            Finding the perfect vacation rental has never been easier.
+          <p className="mt-4 text-lg text-ink-soft">
+            From first photo to first guest, here's exactly what we take off
+            your plate.
           </p>
         </motion.div>
 
-        {/* Steps */}
-        <div className="space-y-32">
+        <div className="space-y-24">
           {steps.map((step, index) => (
-            <div
-              key={index}
-              className={`step-card grid items-center gap-12 lg:grid-cols-2 ${
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className={`grid items-center gap-12 lg:grid-cols-2 ${
                 index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
               }`}
             >
-              {/* Content */}
               <div>
-                <span className="text-8xl font-bold text-white/10">
+                <span className="text-sm font-bold text-ink-faint">
                   {step.number}
                 </span>
-
-                <h3 className="mt-4 text-4xl font-bold text-white">
+                <h3 className="mt-3 text-3xl font-bold text-ink">
                   {step.title}
                 </h3>
-
-                <p className="mt-6 text-lg leading-relaxed text-white/70">
+                <p className="mt-4 max-w-md text-lg leading-relaxed text-ink-soft">
                   {step.description}
                 </p>
-
-                <div className="mt-8">
-                  <button className="rounded-2xl bg-yellow-400 px-6 py-4 font-semibold text-black transition-all hover:scale-105">
-                    Learn More
-                  </button>
-                </div>
               </div>
 
-              {/* Image */}
-              <motion.div
-                whileHover={{
-                  scale: 1.03,
-                }}
-                className="group relative"
-              >
-                <div className="absolute -inset-4 rounded-[40px] bg-yellow-400/20 blur-3xl opacity-0 transition duration-500 group-hover:opacity-100" />
-
+              <div className="overflow-hidden rounded-3xl shadow-sm">
                 <img
                   src={step.image}
                   alt={step.title}
-                  className="relative h-125 w-full rounded-[40px] object-cover shadow-2xl"
+                  className="h-80 w-full object-cover transition duration-700 hover:scale-105"
                 />
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

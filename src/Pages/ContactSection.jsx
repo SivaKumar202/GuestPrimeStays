@@ -8,7 +8,7 @@ import {
 
 export default function ContactSection() {
   return (
-    <section className="relative overflow-hidden bg-[#f6f7fb] py-24">
+    <section id="contact" className="relative overflow-hidden bg-[#f6f7fb] py-24">
       {/* Background Glow */}
       <div className="absolute left-1/2 top-0 h-150 w-150 -translate-x-1/2 rounded-full bg-blue-500/10 blur-[150px]" />
 
@@ -44,11 +44,11 @@ export default function ContactSection() {
           glareMaxOpacity={0.15}
           className="mx-auto"
         > */}
-          <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="
+        <motion.div
+          initial={{ opacity: 0, y: 80 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="
               overflow-hidden
               rounded-[40px]
               border
@@ -57,14 +57,14 @@ export default function ContactSection() {
               shadow-[0_40px_100px_rgba(0,0,0,0.08)]
               backdrop-blur-xl
             "
-          >
-            <div className="grid lg:grid-cols-2">
-              {/* LEFT IMAGE */}
-              <div className="relative overflow-hidden">
-                <img
-                  src="/contact-building.jpg"
-                  alt=""
-                  className="
+        >
+          <div className="grid lg:grid-cols-2">
+            {/* LEFT IMAGE */}
+            <div className="relative overflow-hidden">
+              <img
+                src="/images/contact_cabin.png"
+                alt="GuestPrime Stays Lodge"
+                className="
                     h-full
                     min-h-150
                     w-full
@@ -73,18 +73,18 @@ export default function ContactSection() {
                     duration-700
                     hover:scale-110
                   "
-                />
+              />
 
-                {/* Floating Badge */}
-                <motion.div
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 4,
-                  }}
-                  className="
+              {/* Floating Badge */}
+              {/* <motion.div
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  repeat: Infinity,
+                  duration: 4,
+                }}
+                className="
                     absolute
                     left-6
                     top-6
@@ -94,34 +94,34 @@ export default function ContactSection() {
                     py-4
                     shadow-xl
                   "
-                >
-                  <p className="text-xs text-slate-500">
-                    Average Revenue
-                  </p>
-
-                  <h4 className="text-2xl font-bold text-blue-600">
-                    $4,950
-                  </h4>
-                </motion.div>
-              </div>
-
-              {/* FORM */}
-              <div className="p-8 md:p-12">
-                <h3 className="text-4xl font-bold text-slate-900">
-                  Let's Get In Touch.
-                </h3>
-
-                <p className="mt-3 text-slate-500">
-                  Fill out the form below and we'll contact
-                  you shortly.
+              >
+                <p className="text-xs text-slate-500">
+                  Average Revenue
                 </p>
 
-                <form className="mt-10 space-y-5">
-                  <div className="grid gap-5 md:grid-cols-2">
-                    <input
-                      type="text"
-                      placeholder="First Name"
-                      className="
+                <h4 className="text-2xl font-bold text-blue-600">
+                  $4,950
+                </h4>
+              </motion.div> */}
+            </div>
+
+            {/* FORM */}
+            <div className="p-8 md:p-12">
+              <h3 className="text-4xl font-bold text-slate-900">
+                Let's Get In Touch.
+              </h3>
+
+              <p className="mt-3 text-slate-500">
+                Fill out the form below and we'll contact
+                you shortly.
+              </p>
+
+              <form className="mt-10 space-y-5">
+                <div className="grid gap-5 md:grid-cols-2">
+                  <input
+                    type="text"
+                    placeholder="First Name"
+                    className="
                         rounded-2xl
                         border
                         border-slate-200
@@ -130,12 +130,12 @@ export default function ContactSection() {
                         transition
                         focus:border-blue-500
                       "
-                    />
+                  />
 
-                    <input
-                      type="text"
-                      placeholder="Last Name"
-                      className="
+                  <input
+                    type="text"
+                    placeholder="Last Name"
+                    className="
                         rounded-2xl
                         border
                         border-slate-200
@@ -143,13 +143,13 @@ export default function ContactSection() {
                         outline-none
                         focus:border-blue-500
                       "
-                    />
-                  </div>
+                  />
+                </div>
 
-                  <input
-                    type="email"
-                    placeholder="Email Address"
-                    className="
+                <input
+                  type="email"
+                  placeholder="Email Address"
+                  className="
                       w-full
                       rounded-2xl
                       border
@@ -158,12 +158,12 @@ export default function ContactSection() {
                       outline-none
                       focus:border-blue-500
                     "
-                  />
+                />
 
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="
+                <input
+                  type="tel"
+                  placeholder="Phone Number"
+                  className="
                       w-full
                       rounded-2xl
                       border
@@ -172,12 +172,12 @@ export default function ContactSection() {
                       outline-none
                       focus:border-blue-500
                     "
-                  />
+                />
 
-                  <textarea
-                    rows="5"
-                    placeholder="Tell us about your property..."
-                    className="
+                <input
+                  type="text"
+                  placeholder="Address"
+                  className="
                       w-full
                       rounded-2xl
                       border
@@ -186,16 +186,30 @@ export default function ContactSection() {
                       outline-none
                       focus:border-blue-500
                     "
-                  />
+                />
 
-                  <motion.button
-                    whileHover={{
-                      scale: 1.02,
-                    }}
-                    whileTap={{
-                      scale: 0.98,
-                    }}
-                    className="
+                <textarea
+                  rows="5"
+                  placeholder="Tell us about your property..."
+                  className="
+                      w-full
+                      rounded-2xl
+                      border
+                      border-slate-200
+                      p-4
+                      outline-none
+                      focus:border-blue-500
+                    "
+                />
+
+                <motion.button
+                  whileHover={{
+                    scale: 1.02,
+                  }}
+                  whileTap={{
+                    scale: 0.98,
+                  }}
+                  className="
                       flex
                       w-full
                       items-center
@@ -207,38 +221,38 @@ export default function ContactSection() {
                       font-semibold
                       text-white
                     "
-                  >
-                    Submit Inquiry
-                    <FaArrowRight />
-                  </motion.button>
-                </form>
+                >
+                  Submit Inquiry
+                  <FaArrowRight />
+                </motion.button>
+              </form>
 
-                {/* Contact Cards */}
-                <div className="mt-10 grid gap-4 sm:grid-cols-3">
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <FaEnvelope className="text-blue-600" />
-                    <p className="mt-3 text-sm text-slate-600">
-                      hello@stayscape.com
-                    </p>
-                  </div>
+              {/* Contact Cards */}
+              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl bg-slate-50 p-4">
+                  <FaEnvelope className="text-blue-600" />
+                  <p className="mt-3 text-sm text-slate-600">
+                    hello@guestprimestays.com
+                  </p>
+                </div>
 
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <FaPhone className="text-blue-600" />
-                    <p className="mt-3 text-sm text-slate-600">
-                      +1 (404) 555-1234
-                    </p>
-                  </div>
+                <div className="rounded-2xl bg-slate-50 p-4">
+                  <FaPhone className="text-blue-600" />
+                  <p className="mt-3 text-sm text-slate-600">
+                    +1 (404) 555-1234
+                  </p>
+                </div>
 
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <FaLocationDot className="text-blue-600" />
-                    <p className="mt-3 text-sm text-slate-600">
-                      Atlanta, Georgia
-                    </p>
-                  </div>
+                <div className="rounded-2xl bg-slate-50 p-4">
+                  <FaLocationDot className="text-blue-600" />
+                  <p className="mt-3 text-sm text-slate-600">
+                    Atlanta, Georgia
+                  </p>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
+        </motion.div>
         {/* </Tilt> */}
       </div>
     </section>

@@ -1,4 +1,6 @@
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Tilt from "react-parallax-tilt";
 import {
   TrendingUp,
   MessageCircle,
@@ -12,139 +14,188 @@ const services = [
   {
     icon: TrendingUp,
     title: "Dynamic pricing",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200",
     description:
-      "Revenue-maximizing rates that adjust daily based on demand, local events, and market data.",
+      "Rates adjust daily based on demand, local events, and market data — so you never leave money on the table.",
   },
   {
     icon: MessageCircle,
-    title: "24/7 guest communication",
-    image:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200",
+    title: "24/7 guest messaging",
     description:
-      "Instant, professional responses at any hour. Guests feel taken care of.",
+      "Instant, professional responses at any hour. Guests feel taken care of, day or night.",
   },
   {
     icon: Sparkles,
     title: "Listing optimization",
-    image:
-      "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200",
     description:
-      "Search-ranking titles, persuasive descriptions, and high-conversion photo ordering.",
+      "Search-ranking titles, persuasive descriptions, and photo ordering built to convert.",
   },
   {
     icon: ClipboardCheck,
     title: "Cleaning coordination",
-    image:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=1200",
     description:
-      "Vetted cleaners scheduled automatically after every checkout.",
+      "Vetted local cleaners scheduled automatically after every single checkout.",
   },
   {
     icon: Shield,
     title: "Guest screening",
-    image:
-      "https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200",
     description:
-      "Every booking carefully reviewed before confirmation.",
+      "Every booking is reviewed before confirmation, so your property stays protected.",
   },
   {
     icon: BarChart3,
     title: "Monthly reporting",
-    image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200",
     description:
-      "Clear revenue breakdowns, booking performance, and insights.",
+      "Clear, simple revenue breakdowns and booking performance, sent every month.",
   },
 ];
 
-export default function Services() {
+// Spotlight Card component with coordinate tracking for cursor-glowing effects
+function SpotlightCard({ children, className = "", isHovered, onMouseEnter, onMouseLeave, onMouseMove, coords }) {
   return (
-    <section className="relative bg-[#071629] py-32 overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute left-1/2 top-0 h-175 w-175 -translate-x-1/2 rounded-full bg-yellow-500/10 blur-[180px]" />
+    <Tilt
+      tiltMaxAngleX={6}
+      tiltMaxAngleY={6}
+      scale={1.02}
+      transitionSpeed={800}
+      className="h-full rounded-3xl"
+    >
+      <div
+        onMouseMove={onMouseMove}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        className={`relative h-full overflow-hidden rounded-4xl border border-gray-150 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-emerald-500/20 ${className}`}
+      >
+        {/* Glow Spotlight Effect */}
+        <div
+          className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
+          style={{
+            opacity: isHovered ? 1 : 0,
+            background: `radial-gradient(350px circle at ${coords.x}px ${coords.y}px, rgba(16, 185, 129, 0.09), transparent 80%)`,
+          }}
+        />
 
-      <div className="mx-auto max-w-7xl px-6">
-        {/* Heading */}
+        {/* Content Wrapper */}
+        <div className="relative z-10 h-full flex flex-col justify-between">
+          {children}
+        </div>
+      </div>
+    </Tilt>
+  );
+}
+
+export default function ServicesSection() {
+  // We keep tracking state for cards individually to avoid coordinate cross-talk
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [coords, setCoords] = useState({ x: 0, y: 0 });
+  const cardRefs = useRef([]);
+
+  const handleMouseMove = (e, index) => {
+    const card = cardRefs.current[index];
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    setCoords({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const cardVariants = {
+    initial: { opacity: 0, y: 40 },
+    animate: (idx) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: idx * 0.1,
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  const iconVariants = {
+    initial: { rotate: 0, scale: 1 },
+    hover: {
+      rotate: 15,
+      scale: 1.15,
+      transition: { type: "spring", stiffness: 300, damping: 10 },
+    },
+  };
+
+  return (
+    <section id="services" className="relative overflow-hidden bg-slate-50 py-28">
+      {/* Decorative background glow circles */}
+      <div className="absolute top-1/3 left-1/10 h-96 w-96 rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/10 h-96 w-96 rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+
+      <div className="mx-auto max-w-7xl px-6 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 60 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
+          transition={{ duration: 0.6 }}
+          className="mb-20 max-w-3xl"
         >
-          <span className="text-xs uppercase tracking-[0.4em] text-yellow-400">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-600">
             WHAT WE HANDLE
           </span>
-
-          <h2 className="mt-6 text-5xl md:text-7xl font-serif text-white">
-            Full-Service
-            <br />
-            Co-Hosting
+          <h2 className="mt-4 text-4xl font-sans font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+            Full Service Cohosting
           </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60">
-            Every part of the short-term rental experience — from
-            first inquiry to five-star review — is fully managed.
+          <p className="mt-6 text-lg leading-relaxed text-slate-600">
+            From styling and photo shoots to guest screenings and automatic checkouts, we handle every details of your short-term vacation rental.
           </p>
         </motion.div>
 
-        {/* Grid */}
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        {/* Services Grid */}
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service, index) => {
             const Icon = service.icon;
+            const isHovered = hoveredIndex === index;
 
             return (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, y: 80 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: index * 0.08,
-                  duration: 0.7,
-                }}
-                whileHover={{
-                  y: -10,
-                }}
-                className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/3"
+                custom={index}
+                initial="initial"
+                whileInView="animate"
+                whileHover="hover"
+                viewport={{ once: true }}
+                variants={cardVariants}
+                className="h-full"
+                ref={(el) => (cardRefs.current[index] = el)}
               >
-                {/* Glow */}
-                <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100">
-                  <div className="absolute left-1/2 top-0 h-40 w-40 -translate-x-1/2 rounded-full bg-yellow-500/20 blur-[90px]" />
-                </div>
+                <SpotlightCard
+                  isHovered={isHovered}
+                  coords={coords}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onMouseMove={(e) => handleMouseMove(e, index)}
+                >
+                  <div className="flex flex-col h-full justify-between">
+                    <div>
+                      {/* Icon with Spring Micro-Animation on hover */}
+                      <motion.div
+                        variants={iconVariants}
+                        className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 transition-colors duration-300"
+                      >
+                        <Icon size={24} className="text-emerald-600" />
+                      </motion.div>
 
-                {/* Image */}
-                <div className="overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="h-56 w-full object-cover transition duration-700 group-hover:scale-110"
-                  />
-                </div>
+                      <h3 className="text-xl font-bold text-slate-900 tracking-tight">
+                        {service.title}
+                      </h3>
 
-                {/* Content */}
-                <div className="relative z-10 p-8">
-                  <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-yellow-500/10">
-                    <Icon className="text-yellow-400" />
+                      <p className="mt-4 text-sm leading-relaxed text-slate-500 md:text-base">
+                        {service.description}
+                      </p>
+                    </div>
+
+                    <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-emerald-600">
+                      <span>Professional Support</span>
+                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
+                    </div>
                   </div>
-
-                  <h3 className="text-2xl font-semibold text-white">
-                    {service.title}
-                  </h3>
-
-                  <p className="mt-4 leading-relaxed text-white/60">
-                    {service.description}
-                  </p>
-
-                  <div className="mt-6 flex items-center gap-2 text-yellow-400 opacity-0 transition-all duration-300 group-hover:opacity-100">
-                    <span>Learn More</span>
-                    <span>→</span>
-                  </div>
-                </div>
-
-                {/* Bottom Line Animation */}
-                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-yellow-400 transition-all duration-500 group-hover:w-full" />
+                </SpotlightCard>
               </motion.div>
             );
           })}

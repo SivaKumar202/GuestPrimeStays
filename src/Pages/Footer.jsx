@@ -227,7 +227,7 @@ export default function Footer() {
               text-[60px]
               sm:text-[120px]
               md:text-[140px]
-              lg:text-[170px]
+              lg:text-[150px]
             "
           >
             Guest Prime Stays

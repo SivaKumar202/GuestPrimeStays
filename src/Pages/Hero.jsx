@@ -21,44 +21,6 @@ export default function Hero() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40" />
 
-      {/* Navbar */}
-      <nav className="absolute top-0 left-0 z-50 w-full px-4 md:px-8 lg:px-12 py-6">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <motion.h1
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="text-white text-xl md:text-2xl font-semibold"
-          >
-            {/* LivinEase® */} Guest Prime Stays
-          </motion.h1>
-
-          {/* Desktop Menu */}
-          <ul className="hidden md:flex items-center gap-10 text-white">
-            <li className="cursor-pointer hover:text-gray-300 transition">
-              How It Works
-            </li>
-            <li className="cursor-pointer hover:text-gray-300 transition">
-              Services
-            </li>
-            <li className="cursor-pointer hover:text-gray-300 transition">
-              Compliance
-            </li>
-            <li className="cursor-pointer hover:text-gray-300 transition">
-              About
-            </li>
-            <li className="cursor-pointer hover:text-gray-300 transition">
-              Contact
-            </li>
-          </ul>
-
-          {/* Button */}
-          <button className="rounded-2xl bg-white px-5 py-3 text-sm md:text-base font-medium text-black shadow-lg transition-all hover:scale-105">
-            List Your Property
-          </button>
-        </div>
-      </nav>
-
       {/* Hero Content */}
       <div className="relative z-20 flex h-full items-center justify-center px-6">
         <div className="max-w-5xl text-center">
@@ -117,21 +79,23 @@ export default function Hero() {
             transition={{
               delay: 0.3,
             }}
+            onClick={() => document.getElementById("revenue-estimator")?.scrollIntoView({ behavior: "smooth" })}
             className="
               mt-10
               inline-flex
               items-center
               m-7
               rounded-2xl
-              bg-white
+              bg-yellow-400
               px-8
               py-4
               font-semibold
               text-black
               shadow-xl
+              cursor-pointer
             "
           >
-            Get My free Revenue Estimation
+            Get My Free Revenue Estimation
           </motion.button>
 
           <motion.button
@@ -152,18 +116,23 @@ export default function Hero() {
             transition={{
               delay: 0.6,
             }}
+            onClick={() => document.getElementById("how-it-works")?.scrollIntoView({ behavior: "smooth" })}
             className="
               mt-10
               inline-flex
               items-center
               m-7
               rounded-2xl
-              bg-white
+              bg-white/10
+              border
+              border-white/20
               px-8
               py-4
               font-semibold
-              text-black
+              text-white
               shadow-xl
+              backdrop-blur-md
+              cursor-pointer
             "
           >
             See How It Works
