@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Pointer } from "lucide-react";
 import {
   FaEnvelope,
   FaPhone,
@@ -7,10 +8,17 @@ import {
 } from "react-icons/fa6";
 
 export default function ContactSection() {
+  const HandleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted");
+  };
   return (
-    <section id="contact" className="relative overflow-hidden bg-[#f6f7fb] py-24">
+    <section
+      id="contact"
+      className="relative overflow-hidden bg-[#f6f7fb] py-24"
+    >
       {/* Background Glow */}
-      <div className="absolute left-1/2 top-0 h-150 w-150 -translate-x-1/2 rounded-full bg-blue-500/10 blur-[150px]" />
+      <div className="absolute left-1/2 top-0 h-150 w-150 -translate-x-1/2 rounded-full bg-orange-500/10 blur-[150px]" />
 
       <div className="mx-auto max-w-7xl px-6">
         {/* Heading */}
@@ -20,22 +28,20 @@ export default function ContactSection() {
           viewport={{ once: true }}
           className="mb-20 text-center"
         >
-          <span className="text-sm font-medium uppercase tracking-[0.3em] text-blue-600">
+          <span className="text-sm font-medium uppercase tracking-[0.3em] text-orange-600">
             Contact Us
           </span>
-
-          <h2 className="mt-5 text-4xl font-bold text-slate-900 md:text-6xl">
-            Let's Talk About
-            <br />
-            Your Property
+          <h2 className="mt-2 text-4xl md:text-5xl font-serif text-[#112c4e] leading-tight">
+            Let's Talk About{" "}
+            <span className="text-orange-700 italic font-normal">
+              Your Property
+            </span>
           </h2>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-slate-600">
-            We'd love to hear from you. Reach out and our
-            team will get back within 24 hours.
+          <p className="mx-auto mt-6 max-w-2xl text-neutral-500 text-lg">
+            Whether you're ready to get started or just want to ask a question,
+            we'd love to hear from you. We respond within one business day.
           </p>
         </motion.div>
-
         {/* Main Card */}
         {/* <Tilt
           tiltMaxAngleX={4}
@@ -74,35 +80,6 @@ export default function ContactSection() {
                     hover:scale-110
                   "
               />
-
-              {/* Floating Badge */}
-              {/* <motion.div
-                animate={{
-                  y: [0, -10, 0],
-                }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 4,
-                }}
-                className="
-                    absolute
-                    left-6
-                    top-6
-                    rounded-2xl
-                    bg-white/90
-                    px-5
-                    py-4
-                    shadow-xl
-                  "
-              >
-                <p className="text-xs text-slate-500">
-                  Average Revenue
-                </p>
-
-                <h4 className="text-2xl font-bold text-blue-600">
-                  $4,950
-                </h4>
-              </motion.div> */}
             </div>
 
             {/* FORM */}
@@ -112,39 +89,24 @@ export default function ContactSection() {
               </h3>
 
               <p className="mt-3 text-slate-500">
-                Fill out the form below and we'll contact
-                you shortly.
+                Fill out the form below and we'll contact you shortly.
               </p>
 
-              <form className="mt-10 space-y-5">
-                <div className="grid gap-5 md:grid-cols-2">
-                  <input
-                    type="text"
-                    placeholder="First Name"
-                    className="
+              <form className="mt-10 space-y-5" onSubmit={HandleSubmit}>
+                <input
+                  type="text"
+                  placeholder="First Name and Last Name"
+                  className="
+                        w-full  
                         rounded-2xl
                         border
                         border-slate-200
                         p-4
                         outline-none
                         transition
-                        focus:border-blue-500
+                        focus:border-orange-500
                       "
-                  />
-
-                  <input
-                    type="text"
-                    placeholder="Last Name"
-                    className="
-                        rounded-2xl
-                        border
-                        border-slate-200
-                        p-4
-                        outline-none
-                        focus:border-blue-500
-                      "
-                  />
-                </div>
+                />
 
                 <input
                   type="email"
@@ -156,7 +118,7 @@ export default function ContactSection() {
                       border-slate-200
                       p-4
                       outline-none
-                      focus:border-blue-500
+                      focus:border-orange-500
                     "
                 />
 
@@ -170,7 +132,7 @@ export default function ContactSection() {
                       border-slate-200
                       p-4
                       outline-none
-                      focus:border-blue-500
+                      focus:border-orange-500
                     "
                 />
 
@@ -184,7 +146,7 @@ export default function ContactSection() {
                       border-slate-200
                       p-4
                       outline-none
-                      focus:border-blue-500
+                      focus:border-orange-500
                     "
                 />
 
@@ -198,13 +160,14 @@ export default function ContactSection() {
                       border-slate-200
                       p-4
                       outline-none
-                      focus:border-blue-500
+                      focus:border-orange-500
                     "
                 />
 
                 <motion.button
                   whileHover={{
                     scale: 1.02,
+                    cursor: "pointer",
                   }}
                   whileTap={{
                     scale: 0.98,
@@ -216,7 +179,7 @@ export default function ContactSection() {
                       justify-center
                       gap-3
                       rounded-2xl
-                      bg-blue-600
+                      bg-orange-600
                       py-4
                       font-semibold
                       text-white
@@ -228,24 +191,27 @@ export default function ContactSection() {
               </form>
 
               {/* Contact Cards */}
-              <div className="mt-10 grid gap-4 sm:grid-cols-3">
+              <div className="mt-6 flex flex-wrap">
                 <div className="rounded-2xl bg-slate-50 p-4">
-                  <FaEnvelope className="text-blue-600" />
-                  <p className="mt-3 text-sm text-slate-600">
-                    hello@guestprimestays.com
+                  <a href="mailto:info@guestprimestays.com">
+                    <FaEnvelope className="text-orange-600" />
+                    <p className="mt-3 text-lg text-neutral-500">
+                      info@guestprimestays.com
+                    </p>
+                  </a>
+                </div>
+                <div className="rounded-2xl bg-slate-50 p-4">
+                    <a href="tel:+12405545254">
+                  <FaPhone className="text-orange-600" />
+                  <p className="mt-3 text-lg text-neutral-500">
+                    +1 (240) 554 5254
                   </p>
+                    </a>
                 </div>
 
                 <div className="rounded-2xl bg-slate-50 p-4">
-                  <FaPhone className="text-blue-600" />
-                  <p className="mt-3 text-sm text-slate-600">
-                    +1 (404) 555-1234
-                  </p>
-                </div>
-
-                <div className="rounded-2xl bg-slate-50 p-4">
-                  <FaLocationDot className="text-blue-600" />
-                  <p className="mt-3 text-sm text-slate-600">
+                  <FaLocationDot className="text-orange-600" />
+                  <p className="mt-3 text-lg text-neutral-500">
                     Atlanta, Georgia
                   </p>
                 </div>
@@ -253,7 +219,6 @@ export default function ContactSection() {
             </div>
           </div>
         </motion.div>
-        {/* </Tilt> */}
       </div>
     </section>
   );

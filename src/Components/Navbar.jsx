@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { href } from "react-router-dom";
 
 const links = [
+  { label: "Who We Serve", href: "#who-we-serve" },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Services", href: "#services" },
-  { label: "Compliance", href: "#compliance" },
   { label: "About", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -25,18 +26,17 @@ export default function Navbar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 py-4 ${scrolled
-        ? "bg-white/95 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-gray-100 py-3"
-        : "bg-transparent py-5"
+        ? "bg-white/80 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.03)] border-b border-gray-100 py-3"
+        : "bg-transparent py-6"
         }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
         {/* Logo */}
         <a
           href="#"
-          className={`text-xl font-extrabold tracking-tight transition-colors duration-300 ${scrolled ? "text-slate-900" : "text-white"
-            }`}
+          className="text-xl font-extrabold tracking-tight text-slate-900 transition-colors duration-300"
         >
-          GuestPrime <span className="text-yellow-400">Stays</span>
+          GuestPrime <span className="text-orange-600">Stays</span>
         </a>
 
         {/* Links */}
@@ -45,10 +45,7 @@ export default function Navbar() {
             <a
               key={link.label}
               href={link.href}
-              className={`text-sm font-semibold tracking-wide transition-colors duration-300 ${scrolled
-                ? "text-slate-600 hover:text-slate-950"
-                : "text-white/80 hover:text-white hover:underline decoration-yellow-400 decoration-2 underline-offset-4"
-                }`}
+              className="text-sm font-semibold tracking-wide text-slate-600 transition-colors duration-300 hover:text-slate-950 hover:underline decoration-orange-500 decoration-2 underline-offset-4"
             >
               {link.label}
             </a>
@@ -58,10 +55,7 @@ export default function Navbar() {
         {/* CTA Button */}
         <a
           href="#contact"
-          className={`rounded-2xl px-6 py-2.5 text-sm font-bold shadow-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] ${scrolled
-            ? "bg-slate-900 text-white hover:bg-coral"
-            : "bg-white text-slate-900 hover:bg-yellow-400"
-            }`}
+          className="rounded-2xl bg-slate-900 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all duration-300 hover:scale-[1.03] hover:bg-orange-600 active:scale-[0.98]"
         >
           List Your Property
         </a>

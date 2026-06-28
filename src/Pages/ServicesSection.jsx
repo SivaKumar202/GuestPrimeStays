@@ -1,10 +1,8 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Phone, CircleDollarSign, ChartNoAxesCombined, BrushCleaning } from 'lucide-react';
 import Tilt from "react-parallax-tilt";
 import {
-  TrendingUp,
-  MessageCircle,
-  Sparkles,
   ClipboardCheck,
   Shield,
   BarChart3,
@@ -12,40 +10,40 @@ import {
 
 const services = [
   {
-    icon: TrendingUp,
+    icon: CircleDollarSign,
     title: "Dynamic pricing",
     description:
-      "Rates adjust daily based on demand, local events, and market data — so you never leave money on the table.",
+      "Rates adjust daily based on demand, local events, and seasonality. So you never leave money on the table.",
   },
   {
-    icon: MessageCircle,
-    title: "24/7 guest messaging",
+    icon: Phone,
+    title: "24/7 Guest Support",
     description:
-      "Instant, professional responses at any hour. Guests feel taken care of, day or night.",
+      "Every guest query answered fast, from inquiry to late-night check-in issue. Your Superhost status stays protected.",
   },
   {
-    icon: Sparkles,
+    icon: ChartNoAxesCombined,
     title: "Listing optimization",
     description:
-      "Search-ranking titles, persuasive descriptions, and photo ordering built to convert.",
+      "High-converting titles, search-optimized descriptions, and photo sequencing that turns browsers into bookings.",
   },
   {
     icon: ClipboardCheck,
-    title: "Cleaning coordination",
+    title: "Guest Screening",
     description:
-      "Vetted local cleaners scheduled automatically after every single checkout.",
+      "Every booking reviewed before confirmation. We decline guests who are a risk, before they ever arrive.",
   },
   {
-    icon: Shield,
-    title: "Guest screening",
+    icon: BrushCleaning,
+    title: "Cleaning Coordination",
     description:
-      "Every booking is reviewed before confirmation, so your property stays protected.",
+      "Cleaners scheduled automatically after every checkout. Linen management and property inspections included.",
   },
   {
     icon: BarChart3,
     title: "Monthly reporting",
     description:
-      "Clear, simple revenue breakdowns and booking performance, sent every month.",
+      "Revenue, occupancy, guest reviews, and next steps in a clear report delivered every month.",
   },
 ];
 
@@ -63,14 +61,14 @@ function SpotlightCard({ children, className = "", isHovered, onMouseEnter, onMo
         onMouseMove={onMouseMove}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
-        className={`relative h-full overflow-hidden rounded-4xl border border-gray-150 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-emerald-500/20 ${className}`}
+        className={`relative h-full overflow-hidden rounded-4xl border border-gray-150 bg-white p-8 shadow-sm transition-all duration-300 hover:shadow-xl hover:border-orange-500/20 ${className}`}
       >
         {/* Glow Spotlight Effect */}
         <div
           className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300"
           style={{
             opacity: isHovered ? 1 : 0,
-            background: `radial-gradient(350px circle at ${coords.x}px ${coords.y}px, rgba(16, 185, 129, 0.09), transparent 80%)`,
+            background: `radial-gradient(350px circle at ${coords.x}px ${coords.y}px, rgba(360, 154, 35, 0.30), transparent 80%)`,
           }}
         />
 
@@ -124,8 +122,8 @@ export default function ServicesSection() {
   return (
     <section id="services" className="relative overflow-hidden bg-slate-50 py-28">
       {/* Decorative background glow circles */}
-      <div className="absolute top-1/3 left-1/10 h-96 w-96 rounded-full bg-emerald-500/5 blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/3 right-1/10 h-96 w-96 rounded-full bg-blue-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-1/3 left-1/10 h-96 w-96 rounded-full bg-orange-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/3 right-1/10 h-96 w-96 rounded-full bg-orange-500/5 blur-[120px] pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 relative z-10">
         <motion.div
@@ -133,16 +131,17 @@ export default function ServicesSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-20 max-w-3xl"
+          className="mb-20 max-w-4xl"
         >
-          <span className="text-xs font-bold uppercase tracking-[0.3em] text-emerald-600">
+          <span className="text-xs font-bold uppercase tracking-[0.3em] text-orange-500">
             WHAT WE HANDLE
           </span>
-          <h2 className="mt-4 text-4xl font-sans font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
-            Full Service Cohosting
+          <h2 className="mt-4 text-4xl md:text-5xl font-serif text-[#112c4e] leading-tight">
+            Everything included.{" "}
+            <span className="text-orange-700 italic font-normal">Nothing left out.</span>
           </h2>
-          <p className="mt-6 text-lg leading-relaxed text-slate-600">
-            From styling and photo shoots to guest screenings and automatic checkouts, we handle every details of your short-term vacation rental.
+          <p className="mt-6 leading-relaxed text-neutral-500 text-lg">
+            Every property we manage gets the complete package. No partial service. No add-ons. Just professional management from day one.
           </p>
         </motion.div>
 
@@ -176,23 +175,18 @@ export default function ServicesSection() {
                       {/* Icon with Spring Micro-Animation on hover */}
                       <motion.div
                         variants={iconVariants}
-                        className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 transition-colors duration-300"
+                        className="mb-8 flex h-14 w-14 items-center justify-center rounded-2xl bg-orange-500/10 transition-colors duration-300"
                       >
-                        <Icon size={24} className="text-emerald-600" />
+                        <Icon size={24} className="text-orange-600" />
                       </motion.div>
 
                       <h3 className="text-xl font-bold text-slate-900 tracking-tight">
                         {service.title}
                       </h3>
 
-                      <p className="mt-4 text-sm leading-relaxed text-slate-500 md:text-base">
+                      <p className="mt-4 text-lg leading-relaxed text-neutral-500 md:text-base">
                         {service.description}
                       </p>
-                    </div>
-
-                    <div className="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-emerald-600">
-                      <span>Professional Support</span>
-                      <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">→</span>
                     </div>
                   </div>
                 </SpotlightCard>

@@ -1,6 +1,11 @@
 import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import CountUp from "react-countup";
+import CountUpRaw from "react-countup";
+
+const CountUp = typeof CountUpRaw === "function" 
+  ? CountUpRaw 
+  : (CountUpRaw.default || CountUpRaw);
+
 import {
   Check,
   TrendingUp,

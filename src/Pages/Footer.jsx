@@ -38,30 +38,8 @@ export default function Footer() {
             Ready to unlock
             <br />
             your property's
-            <span className="text-yellow-400"> full potential?</span>
+            <span className="text-orange-400"> full potential?</span>
           </motion.h2>
-
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-            }}
-            whileTap={{
-              scale: 0.95,
-            }}
-            className="
-              mt-10
-              rounded-full
-              bg-white
-              px-10
-              py-5
-              text-lg
-              font-semibold
-              text-black
-              shadow-xl
-            "
-          >
-            Get Free Analysis →
-          </motion.button>
         </div>
 
         {/* Footer Content */}
@@ -202,7 +180,7 @@ export default function Footer() {
         {/* Huge Brand Text */}
         <motion.div
           initial={{
-            
+
             opacity: 0,
           }}
           whileInView={{
@@ -224,10 +202,10 @@ export default function Footer() {
         >
           <h1
             className="
-              text-[60px]
-              sm:text-[120px]
-              md:text-[140px]
-              lg:text-[150px]
+              text-[51px]
+              sm:text-[66px]
+              md:text-[80px]
+              lg:text-[110px]
             "
           >
             Guest Prime Stays
